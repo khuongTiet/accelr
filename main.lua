@@ -4,10 +4,10 @@ function love.load()
   Object = require "classic"
   require "game"
   engine = game();
-  background = love.graphics.newImage("Background.png")
-  tileImage = love.graphics.newImage("Tile.png")
-  ballImage = love.graphics.newImage("meteor.png")
-  sunnyImage = love.graphics.newImage("sunny.png")
+  background = love.graphics.newImage("/assets/Background.png")
+  tileImage = love.graphics.newImage("/assets/Tile.png")
+  sunnyImage = love.graphics.newImage("/assets/sunny.png")
+  paddleImage = love.graphics.newImage("/assets/paddle1.png")
 end
 
 function love.update(dt)

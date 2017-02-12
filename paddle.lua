@@ -17,6 +17,5 @@ function paddle:update(dt)
 end
 
 function paddle:draw(dt)
-  love.graphics.setColor(51, 102, 255)
-  love.graphics.rectangle("fill", self.body:getX()-40, self.body:getY() - 5, 80, 10)
+  love.graphics.draw(paddleImage, self.body:getX() - 40, self.body:getY() - 5)
 end

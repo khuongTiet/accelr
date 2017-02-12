@@ -10,10 +10,10 @@ gameStatus = ""
 gameRetry = ""
 
 TileGrid = {}
-tileNoise = love.audio.newSource("tilehit.wav", "static")
-gameOverNoise = love.audio.newSource("gameOver.wav", "static")
-gameStartNoise = love.audio.newSource("gameStart.wav", "static")
-bg = love.audio.newSource("BackGround.wav", "static")
+tileNoise = love.audio.newSource("/assets/tilehit.wav", "static")
+gameOverNoise = love.audio.newSource("/assets/gameOver.wav", "static")
+gameStartNoise = love.audio.newSource("/assets/gameStart.wav", "static")
+bg = love.audio.newSource("/assets/BackGround.wav", "static")
 
 function game:new()
   world = love.physics.newWorld(0, 0, true)
@@ -43,6 +43,7 @@ function game:update(dt)
   Paddle.body:setX(Paddle.body:getX() + Paddle.xMovement * dt)
   deleteTile(TileGrid)
   gameOver()
+  gameWin()
 
 
 end
@@ -55,6 +56,22 @@ function game:draw(dt)
   Paddle:draw(dt)
   for i,j in pairs(TileGrid) do
     j:draw(dt)
+  end
+end
+
+function gameWin()
+  print(table.getn(TileGrid))
+  if counter == 50 then
+    gameStatus = "YOU WIN"
+    gameRetry = "Replay?\n(Y / N)"
+  end
+  if love.keyboard.isDown("y") then
+        gameStart()
+        gameStatus = ""
+        gameRetry = ""
+  elseif love.keyboard.isDown("n") then
+    love.window.close()
+    love.event.quit()
   end
 end
 
@@ -78,6 +95,7 @@ function gameOver()
 end
 
 function gameStart()
+  tileGrid = {}
   gameStartNoise:play()
   Ball = ball(240, 200)
   Ball.body:setLinearVelocity(Ball.xMovement, 400)
