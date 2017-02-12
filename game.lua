@@ -4,6 +4,7 @@ function game:new()
   require "ball"
   require "paddle"
   require "tile"
+  world = love.physics.newWorld(0, 0, true)
 
   Ball = ball(200, 0)
   Paddle = paddle()
@@ -11,7 +12,7 @@ function game:new()
   for i = 1, 3 do
     TileGrid[i] = {}
     for j = 1, 5 do
-      TileGrid[i][j] = tile(j * 75, i * 45)
+      TileGrid[i][j] = tile(j * 70, i * 45)
     end
   end
 
@@ -20,7 +21,8 @@ function game:new()
 end
 
 function game:update(dt)
-  collision(dt)
+  ballCollision(dt)
+  paddleCollision(dt)
   Ball:update(dt)
   Paddle:update(dt)
   for i = 1, 3 do
@@ -41,6 +43,8 @@ function game:update(dt)
       Ball.y = Ball.y + Ball.yMovement * dt
       Ball.x = Ball.x + Ball.xMovement * dt
     end
+
+    Paddle.x = Paddle.x + Paddle.xMovement * dt
 end
 
 function game:draw(dt)
@@ -53,7 +57,7 @@ function game:draw(dt)
   end
 end
 
-function collision(dt)
+function ballCollision(dt)
     -- Collision for walls
   if Ball.y + Ball.radius >= 600 or Ball.y + Ball.radius <= 20 then
     Ball.yMovement = Ball.yMovement * -1
@@ -62,11 +66,13 @@ function collision(dt)
     Ball.yMovement = Ball.yMovement * -1
     -- Collision for tiles
   end
-  for i = 1, 2 do
-    for j = 1, 4 do
-      if Ball.y + Ball.radius >= TileGrid[i][j].y and Ball.x >= TileGrid[i][j].x and Ball.x <= TileGrid[i][j].x + 60 and
+  for i = 1, 3 do
+    for j = 1, 5 do
+      if Ball.y + Ball.radius >= TileGrid[i][j].y and Ball.x >= TileGrid[i][j].x and Ball.x <= TileGrid[i][j].x + 80 and
          Ball.y + Ball.radius <= TileGrid[i][j].y + 50 then
            Ball.yMovement = Ball.yMovement * -1
+           table.remove(TileGrid[i][j])
+           print("removed")
          end
     end
 
@@ -81,9 +87,10 @@ function collision(dt)
   --        Ball.x + Ball.radius >= Tile.x then
   --   Ball.xMovement = Ball.xMovement * -1
   end
+end
 
-
-
-
-
+function paddleCollision(dt)
+  if Paddle.x + 200 >= 600 or Paddle.x <= 0 then
+    Paddle.xMovement = Paddle.xMovement * -1
+  end
 end

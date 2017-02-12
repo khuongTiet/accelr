@@ -3,6 +3,8 @@ paddle = Object:extend()
 function paddle:new()
   self.x = 200
   self.y = 550
+  self.xMovement = 100
+  self.yMovement = 0
 end
 
 function paddle:update(dt)

@@ -4,13 +4,16 @@ function ball:new(x, y)
   self.x = 240
   self.y = 50
   self.radius = 10
-  self.yMovement = 200
+  self.body = love.physics.newBody(world, self.x, self.y, "dynamic")
+  self.shape = love.physics.newCircleShape(self.radius)
+  self.fixture = love.physics.newFixture(self.body, self.shape)
+  self.body:setBullet(true)
+  self.fixture:setRestitution(1.0)
+  self.yMovement = 400
   self.xMovement = 100
-  shape = love.physics.newCircleShape(360, 50, 20)
 end
 
 function ball:update(dt)
-  
 
 end
 
