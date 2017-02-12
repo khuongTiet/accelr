@@ -8,6 +8,7 @@ function tile:new(x, y)
     self.shape = love.physics.newRectangleShape(60, 15)
     self.fixture = love.physics.newFixture(self.body, self.shape)
     self.fixture:setUserData("Tile")
+    self.body:setActive(true)
 end
 
 function tile:update(dt)

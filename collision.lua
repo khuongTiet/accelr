@@ -19,10 +19,10 @@ function endContact(a, b, coll)
 end
 
 function deleteTile(Grid)
-  for i,j in ipairs(Grid) do
+  for i,j in pairs(Grid) do
     if j.fixture:getUserData() == "Broken" then
       table.remove(Grid, i)
-      j.fixture:destroy()
+      j.body:setActive(false)
     end
   end
 end
