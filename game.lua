@@ -8,10 +8,10 @@ function game:new()
   Ball = ball(200, 0)
   Paddle = paddle()
   TileGrid = {}
-  for i = 1, 2 do
+  for i = 1, 3 do
     TileGrid[i] = {}
-    for j = 1, 4 do
-      TileGrid[i][j] = tile(j * 75, i * 75)
+    for j = 1, 5 do
+      TileGrid[i][j] = tile(j * 75, i * 45)
     end
   end
 
@@ -23,8 +23,8 @@ function game:update(dt)
   collision(dt)
   Ball:update(dt)
   Paddle:update(dt)
-  for i = 1, 2 do
-    for j = 1, 4 do
+  for i = 1, 3 do
+    for j = 1, 5 do
       TileGrid[i][j]:update(dt)
     end
   end
@@ -46,8 +46,8 @@ end
 function game:draw(dt)
   Ball:draw(dt)
   Paddle:draw(dt)
-  for i = 1, 2 do
-    for j = 1, 4 do
+  for i = 1, 3 do
+    for j = 1, 5 do
       TileGrid[i][j]:draw(dt)
     end
   end
