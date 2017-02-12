@@ -1,8 +1,8 @@
 ball = Object:extend()
 
 function ball:new(x, y)
-  self.x = 240
-  self.y = 50
+  self.x = x
+  self.y = y
   self.radius = 10
   self.body = love.physics.newBody(world, self.x, self.y, "dynamic")
   self.shape = love.physics.newCircleShape(self.radius)

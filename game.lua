@@ -6,7 +6,7 @@ function game:new()
   require "tile"
   world = love.physics.newWorld(0, 0, true)
 
-  Ball = ball(200, 0)
+  Ball = ball(240, 300)
   Paddle = paddle()
   TileGrid = {}
   for i = 1, 3 do
@@ -25,11 +25,7 @@ function game:update(dt)
   paddleCollision(dt)
   Ball:update(dt)
   Paddle:update(dt)
-  for i = 1, 3 do
-    for j = 1, 5 do
-      TileGrid[i][j]:update(dt)
-    end
-  end
+
 
   if love.keyboard.isDown("left") then
         Ball.x = Ball.x - 100 * dt
@@ -72,7 +68,6 @@ function ballCollision(dt)
          Ball.y + Ball.radius <= TileGrid[i][j].y + 50 then
            Ball.yMovement = Ball.yMovement * -1
            table.remove(TileGrid[i][j])
-           print("removed")
          end
     end
 
@@ -83,9 +78,14 @@ function ballCollision(dt)
     Ball.xMovement = Ball.xMovement * -1
   elseif Ball.x + Ball.radius <= 20 then
     Ball.xMovement = Ball.xMovement * -1
-  -- elseif Ball.x + Ball.radius <= Tile.x + 80 and Ball.y >= Tile.y and Ball.y <= Tile.y + 50 and
-  --        Ball.x + Ball.radius >= Tile.x then
-  --   Ball.xMovement = Ball.xMovement * -1
+  end
+  for i = 1, 3 do
+    for j = 1, 5 do
+    if Ball.x + Ball.radius <= TileGrid[i][j].x + 80 and Ball.y >= TileGrid[i][j].y and Ball.y <= TileGrid[i][j].y + 50 and
+           Ball.x + Ball.radius >= TileGrid[i][j].x then
+             Ball.xMovement = Ball.xMovement * -1
+           end
+         end
   end
 end
 
