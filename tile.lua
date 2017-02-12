@@ -1,8 +1,8 @@
 tile = Object:extend()
 
-function tile:new()
-    self.x = 30
-    self.y = 100
+function tile:new(x, y)
+    self.x = x
+    self.y = y
 end
 
 function tile:update(dt)

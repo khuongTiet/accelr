@@ -2,18 +2,15 @@ debug = true
 
 function love.load()
   Object = require "classic"
-  require "ball"
-  require "paddle"
-  mball = ball(200, 0)
-  mpaddle = paddle()
+  require "game"
+  engine = game();
+
 end
 
 function love.update(dt)
-  mball:update(dt)
-  mpaddle:update(dt)
+  game:update(dt)
 end
 
 function love.draw(dt)
-  mball:draw(dt)
-  mpaddle:draw(dt)
+  game:draw(dt)
 end

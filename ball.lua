@@ -6,23 +6,11 @@ function ball:new(x, y)
   self.radius = 10
   self.yMovement = 200
   self.xMovement = 100
+  shape = love.physics.newCircleShape(360, 50, 20)
 end
 
 function ball:update(dt)
-  if self.y + self.radius >= 600 then
-    self.yMovement = self.yMovement * -1
-  elseif self.y + self.radius <= 20 then
-    self.yMovement = self.yMovement * -1
-  end
-
-  if self.x + self.radius >= 480 then
-    self.xMovement = self.xMovement * -1
-  elseif self.x + self.radius <= 20 then
-    self.xMovement = self.xMovement * -1
-  end
-
-  self.y = self.y + self.yMovement * dt
-  self.x = self.x + self.xMovement * dt
+  
 
 end
 
