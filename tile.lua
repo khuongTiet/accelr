@@ -1,5 +1,5 @@
 tile = Object:extend()
-
+require "powerup"
 function tile:new(x, y)
     self.x = x
     self.y = y
@@ -9,6 +9,7 @@ function tile:new(x, y)
     self.fixture = love.physics.newFixture(self.body, self.shape)
     self.fixture:setUserData("Tile")
     self.body:setActive(true)
+    self.hasPowerUp = true
 end
 
 function tile:update(dt)

@@ -13,6 +13,8 @@ TileGrid = {}
 tileNoise = love.audio.newSource("tilehit.wav", "static")
 gameOverNoise = love.audio.newSource("gameOver.wav", "static")
 gameStartNoise = love.audio.newSource("gameStart.wav", "static")
+bg = love.audio.newSource("BackGround.wav", "static")
+
 function game:new()
   world = love.physics.newWorld(0, 0, true)
   world:setCallbacks(beginContact, endContact)
@@ -22,6 +24,7 @@ function game:new()
 end
 
 function game:update(dt)
+  bg:play()
   world:update(dt)
   paddleCollision(dt)
 

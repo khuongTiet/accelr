@@ -21,8 +21,14 @@ end
 function endContact(a, b, coll)
   if a:getUserData() == "Tile" then
     a:setUserData("Broken")
+    if a.hasPowerUp then
+      p = powerup()
+    end
   elseif b:getUserData() == "Tile" then
     b:setUserData("Broken")
+    if b.hasPowerUp then
+      p = powerup()
+    end
   end
 end
 
