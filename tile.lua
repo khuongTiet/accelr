@@ -3,6 +3,9 @@ tile = Object:extend()
 function tile:new(x, y)
     self.x = x
     self.y = y
+    self.body = love.physics.newBody(world, self.x, self.y, "static")
+    self.shape = love.physics.newRectangleShape(self.x, self.y, 60, 30)
+    self.fixture = love.physics.newFixture(self.body, self.shape)
 end
 
 function tile:update(dt)
