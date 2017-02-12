@@ -5,7 +5,7 @@ function love.load()
   require "game"
   engine = game();
   background = love.graphics.newImage("Background.png")
-
+  tileImage = love.graphics.newImage("Tile.png")
 end
 
 function love.update(dt)
