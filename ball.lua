@@ -5,7 +5,7 @@ function ball:new(x, y)
   self.y = y
   self.radius = 10
   self.yMovement = 400
-  self.xMovement = 100
+  self.xMovement = 0
 end
 
 function ball:update(dt)

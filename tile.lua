@@ -14,3 +14,9 @@ function tile:draw(dt)
   love.graphics.setColor(122, 255, 255)
   love.graphics.rectangle("fill", self.x, self.y, 60, 15)
 end
+
+function tile:delete()
+  self.drawn = false
+  self.x = 1000
+  self.y = 1000
+end
