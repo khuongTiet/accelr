@@ -1,13 +1,21 @@
 require "UI"
-
+math.randomseed(os.time())
 function paddleCollision(dt)
   if Paddle.body:getX() + 40 >= 600 or Paddle.body:getX() - 40 <= 0 then
-    Paddle.xMovement = Paddle.xMovement * -1
+    Paddle.xMovement = Paddle.xMovement * -1 * math.random(.5 , 2)
+  end
+  if Paddle.body:getX() > 650 or Paddle.body:getX() < 0 then
+    accel = 1
+    if Paddle.body:getX() < 0 then
+      accel = -1
+    end
+    Paddle.body:setX(200)
+    Paddle.xMovement = 400 * -accel
   end
 end
 
 function beginContact(a, b, coll)
-
+  tileNoise:play()
 end
 
 function endContact(a, b, coll)

@@ -30,11 +30,15 @@ function game:update(dt)
     Ball.body:setLinearVelocity(setx + 10, sety)
   elseif love.keyboard.isDown("up") then
     Ball.body:setLinearVelocity(setx, sety - 10)
+  elseif love.keyboard.isDown("down") then
+    Ball.body:setLinearVelocity(setx, sety + 800)
+    Ball.powerAccel = true
   end
 
   Paddle.body:setX(Paddle.body:getX() + Paddle.xMovement * dt)
   deleteTile(TileGrid)
   gameOver()
+  tileNoise = love.audio.newSource("tilehit.wav", "static")
 
 end
 
