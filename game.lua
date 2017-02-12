@@ -61,9 +61,15 @@ function collision(dt)
   elseif Ball.y + Ball.radius >= Paddle.y and Ball.x >= Paddle.x and Ball.x <= Paddle.x + 80 then
     Ball.yMovement = Ball.yMovement * -1
     -- Collision for tiles
-  -- elseif Ball.y + Ball.radius >= Tile.y and Ball.x >= Tile.x and Ball.x <= Tile.x + 60 and
-  --        Ball.y + Ball.radius <= Tile.y + 50 then
-  --   Ball.yMovement = Ball.yMovement * -1
+  end
+  for i = 1, 2 do
+    for j = 1, 4 do
+      if Ball.y + Ball.radius >= TileGrid[i][j].y and Ball.x >= TileGrid[i][j].x and Ball.x <= TileGrid[i][j].x + 60 and
+         Ball.y + Ball.radius <= TileGrid[i][j].y + 50 then
+           Ball.yMovement = Ball.yMovement * -1
+         end
+    end
+
   end
 
 
