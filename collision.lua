@@ -21,14 +21,8 @@ end
 function endContact(a, b, coll)
   if a:getUserData() == "Tile" then
     a:setUserData("Broken")
-    if a.hasPowerUp then
-      a.PowerUp.body:setLinearVelocity(0, 400)
-    end
   elseif b:getUserData() == "Tile" then
     b:setUserData("Broken")
-    if b.hasPowerUp then
-      b.PowerUp.body:setLinearVelocity(0, 400)
-    end
   end
 end
 

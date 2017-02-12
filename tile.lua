@@ -9,8 +9,6 @@ function tile:new(x, y)
     self.fixture = love.physics.newFixture(self.body, self.shape)
     self.fixture:setUserData("Tile")
     self.body:setActive(true)
-    self.hasPowerUp = true
-    self.PowerUp = powerup(self.x + 30, self.y + 7.5)
 end
 
 function tile:update(dt)

@@ -10,7 +10,6 @@ gameStatus = ""
 gameRetry = ""
 
 TileGrid = {}
-PowerGrid = {}
 tileNoise = love.audio.newSource("tilehit.wav", "static")
 gameOverNoise = love.audio.newSource("gameOver.wav", "static")
 gameStartNoise = love.audio.newSource("gameStart.wav", "static")
@@ -85,7 +84,6 @@ function gameStart()
   for i = 1, 5 do
     for j = 1, 10 do
       table.insert(TileGrid, tile((j - 1) * 61, (i-1) * 16))
-      table.insert(PowerGrid, powerup((j-1)* 61, (i-1) * 16))
     end
   end
 end

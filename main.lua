@@ -6,6 +6,8 @@ function love.load()
   engine = game();
   background = love.graphics.newImage("Background.png")
   tileImage = love.graphics.newImage("Tile.png")
+  ballImage = love.graphics.newImage("meteor.png")
+  sunnyImage = love.graphics.newImage("sunny.png")
 end
 
 function love.update(dt)

@@ -21,6 +21,5 @@ function ball:update(dt)
 end
 
 function ball:draw(dt)
-  love.graphics.setColor(255, 51, 204)
-  love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.shape:getRadius())
+  love.graphics.draw(sunnyImage, self.body:getX() - self.radius, self.body:getY() - self.radius)
 end
