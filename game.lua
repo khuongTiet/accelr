@@ -10,7 +10,9 @@ gameStatus = ""
 gameRetry = ""
 
 TileGrid = {}
-
+tileNoise = love.audio.newSource("tilehit.wav", "static")
+gameOverNoise = love.audio.newSource("gameOver.wav", "static")
+gameStartNoise = love.audio.newSource("gameStart.wav", "static")
 function game:new()
   world = love.physics.newWorld(0, 0, true)
   world:setCallbacks(beginContact, endContact)
@@ -38,7 +40,7 @@ function game:update(dt)
   Paddle.body:setX(Paddle.body:getX() + Paddle.xMovement * dt)
   deleteTile(TileGrid)
   gameOver()
-  tileNoise = love.audio.newSource("tilehit.wav", "static")
+
 
 end
 
@@ -55,6 +57,7 @@ end
 
 function gameOver()
   if Ball.body:getY() > 650 then
+    gameOverNoise:play()
     gameStatus = "ITS OVER BUDDY"
     gameRetry = "Replay?\n(Y / N)"
     Ball.body:setLinearVelocity(0,0)
@@ -64,6 +67,7 @@ function gameOver()
           gameRetry = ""
     elseif love.keyboard.isDown("n") then
       love.window.close()
+      love.event.quit()
     end
   end
 
@@ -71,6 +75,7 @@ function gameOver()
 end
 
 function gameStart()
+  gameStartNoise:play()
   Ball = ball(240, 200)
   Ball.body:setLinearVelocity(Ball.xMovement, 400)
   for i = 1, 5 do
