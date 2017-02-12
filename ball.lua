@@ -1,16 +1,15 @@
 ball = Object:extend()
 
 function ball:new(x, y)
-  self.x = 240
-  self.y = 50
+  self.x = x
+  self.y = y
   self.radius = 10
-  self.yMovement = 200
+  self.yMovement = 400
   self.xMovement = 100
-  shape = love.physics.newCircleShape(360, 50, 20)
 end
 
 function ball:update(dt)
-  
+
 
 end
 
