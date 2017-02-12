@@ -20,5 +20,5 @@ end
 
 function ball:draw(dt)
   love.graphics.setColor(255, 51, 204)
-  love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.shape:getRadius(), 100)
+  love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.shape:getRadius())
 end

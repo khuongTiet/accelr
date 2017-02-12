@@ -23,10 +23,8 @@ function game:new()
 end
 
 function game:update(dt)
-  ballCollision(dt)
+  world:update(dt)
   paddleCollision(dt)
-  Ball:update(dt)
-  Paddle:update(dt)
   for i = 1, 5 do
     for j = 1, 10 do
       TileGrid[i][j]:update(dt)
@@ -34,22 +32,22 @@ function game:update(dt)
   end
 
   if love.keyboard.isDown("left") then
-        Ball.xMovement = Ball.xMovement -200 * dt
+        Ball.body:setLinearVelocity(-400,0)
   elseif love.keyboard.isDown("right") then
-        Ball.xMovement = Ball.xMovement + 200 * dt
+        Ball.body:setLinearVelocity(400,0)
   elseif love.keyboard.isDown("down") and Ball.yMovement > 0 then
-        Ball.yMovement = 1000
+        Ball.body:setLinearVelocity(0, 200)
+  elseif love.keyboard.isDown("up") then
+        Ball.body:setLinearVelocity(0 ,-400)
   end
 
-  Ball.y = Ball.y + Ball.yMovement * dt
-  Ball.x = Ball.x + Ball.xMovement * dt
-  Paddle.x = Paddle.x + Paddle.xMovement * dt
+  Paddle.body:setX(Paddle.body:getX() + Paddle.xMovement * dt)
+
 end
 
 function game:draw(dt)
   Ball:draw(dt)
   Paddle:draw(dt)
-  love.graphics.print("Hello")
   for i = 1, 5 do
     for j = 1, 10 do
       if TileGrid[i][j].drawn == true then

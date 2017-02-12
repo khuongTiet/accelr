@@ -35,7 +35,7 @@ function ballCollision(dt)
 end
 
 function paddleCollision(dt)
-  if Paddle.x + 80 >= 600 or Paddle.x <= 0 then
+  if Paddle.body:getX() + 40 >= 600 or Paddle.body:getX() - 40 <= 0 then
     Paddle.xMovement = Paddle.xMovement * -1
   end
 end
