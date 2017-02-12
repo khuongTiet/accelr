@@ -4,6 +4,9 @@ function tile:new(x, y)
     self.x = x
     self.y = y
     self.drawn = true
+    self.body = love.physics.newBody(world, self.x, self.y, "static")
+    self.shape = love.physics.newRectangleShape(self.x, self. y, 60, 15)
+    self.fixture = love.physics.newFixture(self.body, self.shape)
 end
 
 function tile:update(dt)

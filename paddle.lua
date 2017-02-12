@@ -5,6 +5,9 @@ function paddle:new()
   self.y = 550
   self.xMovement = 100
   self.yMovement = 0
+  self.body = love.physics.newBody(world, self.x, self.y, "static")
+  self.shape = love.physics.newRectangleShape(self.x, self. y, 80, 10)
+  self.fixture = love.physics.newFixture(self.body, self.shape)
 end
 
 function paddle:update(dt)

@@ -6,9 +6,13 @@ function game:new()
   require "ball"
   require "paddle"
   require "tile"
+  require "walls"
+
+  world = love.physics.newWorld(0, 0, true)
 
   Ball = ball(240, 300)
   Paddle = paddle()
+  walls = walls()
   TileGrid = {}
   for i = 1, 5 do
     TileGrid[i] = {}
@@ -16,9 +20,6 @@ function game:new()
       TileGrid[i][j] = tile((j - 1) * 61, (i-1) * 16)
     end
   end
-
-
-
 end
 
 function game:update(dt)
@@ -48,6 +49,7 @@ end
 function game:draw(dt)
   Ball:draw(dt)
   Paddle:draw(dt)
+  love.graphics.print("Hello")
   for i = 1, 5 do
     for j = 1, 10 do
       if TileGrid[i][j].drawn == true then
