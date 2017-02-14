@@ -1,5 +1,5 @@
 tile = Object:extend()
-require "powerup"
+require "src/powerup"
 function tile:new(x, y)
     self.x = x
     self.y = y

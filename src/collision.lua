@@ -1,4 +1,3 @@
-require "UI"
 math.randomseed(os.time())
 function paddleCollision(dt)
   if Paddle.body:getX() + 40 >= 600 or Paddle.body:getX() - 40 <= 0 then
@@ -15,7 +14,24 @@ function paddleCollision(dt)
 end
 
 function beginContact(a, b, coll)
-  tileNoise:play()
+  if a:getUserData() == "Tile" then
+    tileNoise:play()
+  elseif b:getUserData() == "Tile" then
+    tileNoise:play()
+  end
+
+  if a:getUserData() == "Paddle" then
+    paddleNoise:play()
+  elseif b:getUserData() == "Paddle" then
+    paddleNoise:play()
+  end
+
+  if a:getUserData() == "Wall" then
+    wallNoise:play()
+  elseif b:getUserData() == "Wall" then
+    wallNoise:play()
+  end
+
 end
 
 function endContact(a, b, coll)
@@ -24,13 +40,9 @@ function endContact(a, b, coll)
   elseif b:getUserData() == "Tile" then
     b:setUserData("Broken")
   end
-end
 
-function deleteTile(Grid)
-  for i,j in pairs(Grid) do
-    if j.fixture:getUserData() == "Broken" then
-      table.remove(Grid, i)
-      j.body:setActive(false)
-    end
+  if a:getUserData() == "Ball" and b:getUserData() == "Ball" then
+    print("Two balls")
   end
+
 end

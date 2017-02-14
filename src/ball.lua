@@ -1,8 +1,7 @@
 ball = Object:extend()
-math.randomseed(os.time())
-function ball:new(x, y)
-  self.x = x
-  self.y = y
+function ball:new()
+  self.x = 300
+  self.y = 300
   self.radius = 10
   self.yMovement = 400
   self.xMovement = math.random(-300, 300)
@@ -16,7 +15,19 @@ function ball:new(x, y)
 end
 
 function ball:update(dt)
-
+  setx, sety = Ball.body:getLinearVelocity()
+  if love.keyboard.isDown("left") then
+   Ball.body:setLinearVelocity(setx - 10, sety)
+  elseif love.keyboard.isDown("right") then
+   Ball.body:setLinearVelocity(setx + 10, sety)
+  elseif love.keyboard.isDown("up") then
+   if Ball.body:getY() > 400 then
+     Ball.body:setLinearVelocity(setx, sety - 10)
+   end
+  elseif love.keyboard.isDown("down") then
+   Ball.body:setLinearVelocity(setx, sety + 800)
+   Ball.powerAccel = true
+  end
 
 end
 

@@ -1,17 +1,37 @@
 debug = true
-
+Object = require "lib/classic"
 function love.load()
-  Object = require "classic"
-  require "game"
+  require "src/game"
+  math.randomseed(os.time())
+  world = love.physics.newWorld(0, 0, true)
+  world:setCallbacks(beginContact, endContact)
   engine = game();
   background = love.graphics.newImage("/assets/Background.png")
   tileImage = love.graphics.newImage("/assets/Tile.png")
   sunnyImage = love.graphics.newImage("/assets/sunny.png")
   paddleImage = love.graphics.newImage("/assets/paddle1.png")
+  gameStatus = ""
+  gameRetry = ""
 end
 
 function love.update(dt)
-  game:update(dt)
+  world:update(dt)
+  engine:update(dt)
+  if Ball.body:getY() > 640 then
+    gameOverNoise:play()
+    gameStatus = "ITS OVER BUDDY"
+    gameRetry = "Replay?\n(Y / N)"
+    Ball.body:setLinearVelocity(0,0)
+    if love.keyboard.isDown("y") then
+      Ball.body:destroy()
+      print(Ball.body:isDestroyed())
+      world:destroy()
+      love.load()
+    elseif love.keyboard.isDown("n") then
+      love.window.close()
+      love.event.quit()
+    end
+  end
 end
 
 function love.draw(dt)
