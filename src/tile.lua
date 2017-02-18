@@ -18,9 +18,3 @@ end
 function tile:draw(dt)
   love.graphics.draw(tileImage, self.x, self.y)
 end
-
-function tile:delete()
-  self.drawn = false
-  self.x = 1000
-  self.y = 1000
-end

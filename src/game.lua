@@ -22,18 +22,15 @@ function game:new()
   Ball = ball()
   Grid = grid()
   gameStartNoise:play()
-  Ball.body:setLinearVelocity(Ball.xMovement, 400)
+  Ball.body:setLinearVelocity(Ball.xMovement, 450)
 end
 
 function game:update(dt)
   Ball:update(dt)
   Paddle:update(dt)
+  Grid:update(dt)
   bg:play()
-  paddleCollision(dt)
-  Grid:deleteTile()
   gameWin()
-
-
 end
 
 function game:draw(dt)

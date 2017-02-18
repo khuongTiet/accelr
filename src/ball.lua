@@ -1,4 +1,5 @@
 ball = Object:extend()
+
 function ball:new()
   self.x = 300
   self.y = 300
@@ -20,12 +21,18 @@ function ball:update(dt)
    Ball.body:setLinearVelocity(setx - 10, sety)
   elseif love.keyboard.isDown("right") then
    Ball.body:setLinearVelocity(setx + 10, sety)
+   -- Implement a boost meter to prevent players from holding down the "up" key
   elseif love.keyboard.isDown("up") then
-   if Ball.body:getY() > 400 then
+   if Ball.body:getY() > 600 then
      Ball.body:setLinearVelocity(setx, sety - 10)
+     if Ball.body:getY() > 780 then
+       Ball.body:setLinearVelocity(setx, sety - 30)
+     end
+   else
+     Ball.body:setLinearVelocity(setx, sety - .5)
    end
   elseif love.keyboard.isDown("down") then
-   Ball.body:setLinearVelocity(setx, sety + 800)
+   Ball.body:setLinearVelocity(setx, sety + 900)
    Ball.powerAccel = true
   end
 

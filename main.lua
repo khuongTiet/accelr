@@ -17,14 +17,13 @@ end
 function love.update(dt)
   world:update(dt)
   engine:update(dt)
-  if Ball.body:getY() > 640 then
+  if Ball.body:getY() > 840 then
     gameOverNoise:play()
     gameStatus = "ITS OVER BUDDY"
     gameRetry = "Replay?\n(Y / N)"
     Ball.body:setLinearVelocity(0,0)
     if love.keyboard.isDown("y") then
       Ball.body:destroy()
-      print(Ball.body:isDestroyed())
       world:destroy()
       love.load()
     elseif love.keyboard.isDown("n") then
